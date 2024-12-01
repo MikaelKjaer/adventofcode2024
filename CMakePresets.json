@@ -1,0 +1,296 @@
+{
+    "version": 5,
+    "configurePresets": [
+        {
+            "name": "windows-debug",
+            "displayName": "Windows Debug x64",
+            "description": "Target Windows with the Visual Studio development environment.",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "toolchainFile": "${sourceDir}/windows.cmake",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "hostOS": [
+                        "Windows"
+                    ],
+                    "intelliSenseMode": "windows-msvc-x64",
+                    "intelliSenseOptions": {
+                        "additionalCompilerArgs": "/permissive- /std:c++latest"
+                    }
+                }
+            }
+        },
+        {
+            "name": "windows-release",
+            "displayName": "Windows x64 Release",
+            "description": "Target Windows with the Visual Studio development environment.",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "toolchainFile": "${sourceDir}/windows.cmake",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "hostOS": [
+                        "Windows"
+                    ],
+                    "intelliSenseMode": "windows-msvc-x64",
+                    "intelliSenseOptions": {
+                        "additionalCompilerArgs": "/permissive- /std:c++latest"
+                    }
+                }
+            }
+        },
+        {
+            "name": "windows-relwithdebug",
+            "displayName": "Windows Release With Debug x64",
+            "description": "Target Windows with the Visual Studio development environment.",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "toolchainFile": "${sourceDir}/windows.cmake",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "hostOS": [
+                        "Windows"
+                    ],
+                    "intelliSenseMode": "windows-msvc-x64",
+                    "intelliSenseOptions": {
+                        "additionalCompilerArgs": "/permissive- /std:c++latest"
+                    }
+                }
+            }
+        },
+        {
+            "name": "linux-debug",
+            "displayName": "Linux Debug x64",
+            "description": "Target Windows with the Visual Studio development environment.",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "toolset": {
+                "strategy": "external",
+                "value": ""
+            },
+            "toolchainFile": "${sourceDir}/cmake/linux.cmake",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+          "vendor": {
+            "microsoft.com/VisualStudioSettings/CMake/1.0": {
+              "hostOS": [
+                "Linux"
+              ],
+              "intelliSenseMode": "linux-gcc-x64"
+            }
+          }
+        },
+        {
+          "name": "clang-linux-debug",
+          "displayName": "Linux Debug x64",
+          "description": "Target Linux with clang compiler.",
+          "generator": "Ninja",
+          "binaryDir": "${sourceDir}/out/build/${presetName}",
+          "architecture": {
+            "value": "x64",
+            "strategy": "external"
+          },
+          "toolset": {
+            "strategy": "external",
+            "value": ""
+          },
+          "toolchainFile": "${sourceDir}/cmake/clang-linux.cmake",
+          "installDir": "${sourceDir}/out/install/${presetName}",
+          "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Debug"
+          },
+          "vendor": {
+            "microsoft.com/VisualStudioSettings/CMake/1.0": {
+              "hostOS": [
+                "Linux"
+              ],
+              "intelliSenseMode": "linux-gcc-x64"
+            }
+          }
+        },
+        {
+            "name": "linux-release",
+            "displayName": "Linux Release x64",
+            "description": "Target Windows with the Visual Studio development environment.",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "toolset": {
+                "strategy": "external",
+                "value": ""
+            },
+            "toolchainFile": "${sourceDir}/cmake/linux.cmake",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            },
+            "vendor": {
+              "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                "hostOS": [
+                  "Linux"
+                ],
+                "intelliSenseMode": "linux-gcc-x64"
+            }
+          }
+        },
+        {
+          "name": "clang-linux-release",
+          "displayName": "Linux Release x64",
+          "description": "Target Linux with Clang.",
+          "generator": "Ninja",
+          "binaryDir": "${sourceDir}/out/build/${presetName}",
+          "architecture": {
+            "value": "x64",
+            "strategy": "external"
+          },
+          "toolset": {
+            "strategy": "external",
+            "value": ""
+          },
+          "toolchainFile": "${sourceDir}/cmake/clang-linux.cmake",
+          "installDir": "${sourceDir}/out/install/${presetName}",
+          "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Release"
+          },
+          "vendor": {
+            "microsoft.com/VisualStudioSettings/CMake/1.0": {
+              "hostOS": [
+                "Linux"
+              ],
+              "intelliSenseMode": "linux-gcc-x64"
+            }
+          }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "Windows Debug build",
+            "description": "Inherits environment from base configurePreset",
+            "configurePreset": "windows-debug",
+            "inheritConfigureEnvironment": true,
+            "verbose": true,
+            "configuration": "Debug"
+        },
+        {
+            "name": "Windows Clean and Debug Build",
+            "description": "Clean before build (--clean-first)",
+            "configurePreset": "windows-debug",
+            "inherits": "Windows Debug build",
+            "cleanFirst": true
+        },
+        {
+            "name": "Windows Release with Debug build",
+            "description": "Inherits environment from base configurePreset",
+            "configurePreset": "windows-relwithdebug",
+            "inheritConfigureEnvironment": true,
+            "verbose": true,
+            "cleanFirst": false,
+            "configuration": "RelWithDebInfo"
+        },
+        {
+            "name": "Windows Release build",
+            "description": "Inherits environment from base configurePreset",
+            "configurePreset": "windows-release",
+            "inheritConfigureEnvironment": true,
+            "verbose": true,
+            "cleanFirst": false,
+            "configuration": "Release"
+        },
+        {
+            "name": "Windows Clean and Release build",
+            "description": "Inherits environment from base configurePreset",
+            "configurePreset": "windows-release",
+            "inheritConfigureEnvironment": true,
+            "verbose": true,
+            "cleanFirst": true,
+            "configuration": "Release"
+        },
+        {
+            "name": "Linux Debug build",
+            "description": "Inherits environment from base configurePreset",
+            "configurePreset": "linux-debug",
+            "inheritConfigureEnvironment": true,
+            "verbose": true,
+            "configuration": "Debug"
+        },
+        {
+            "name": "Linux Clean and Debug Build",
+            "description": "Clean before build (--clean-first)",
+            "configurePreset": "linux-debug",
+            "inherits": "Linux Debug build",
+            "cleanFirst": true
+        },
+        {
+            "name": "Linux Release build",
+            "description": "Inherits environment from base configurePreset",
+            "configurePreset": "linux-release",
+            "inheritConfigureEnvironment": true,
+            "verbose": true,
+            "cleanFirst": false,
+            "configuration": "Release"
+        },
+        {
+            "name": "Linux Clean and Release build",
+            "description": "Inherits environment from base configurePreset",
+            "configurePreset": "linux-release",
+            "inheritConfigureEnvironment": true,
+            "verbose": true,
+            "cleanFirst": true,
+            "configuration": "Release"
+        },
+        {
+          "name": "Clang Linux Debug build",
+          "description": "Inherits environment from base configurePreset",
+          "configurePreset": "clang-linux-debug",
+          "inheritConfigureEnvironment": true,
+          "verbose": true,
+          "configuration": "Debug"
+        },
+        {
+          "name": "Clang Linux Clean and Debug Build",
+          "description": "Clean before build (--clean-first)",
+          "configurePreset": "clang-linux-debug",
+          "inherits": "Clang Linux Debug build",
+          "cleanFirst": true
+        },
+        {
+          "name": "Clang Linux Release build",
+          "description": "Inherits environment from base configurePreset",
+          "configurePreset": "clang-linux-release",
+          "inheritConfigureEnvironment": true,
+          "verbose": true,
+          "cleanFirst": false,
+          "configuration": "Release"
+        },
+        {
+          "name": "Clang Linux Clean and Release build",
+          "description": "Inherits environment from base configurePreset",
+          "configurePreset": "clang-linux-release",
+          "inheritConfigureEnvironment": true,
+          "verbose": true,
+          "cleanFirst": true,
+          "configuration": "Release"
+        }
+    ]
+}
