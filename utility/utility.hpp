@@ -8,6 +8,7 @@
 #include <map>
 #include <optional>
 #include <ranges>
+#include <regex>
 #include <string>
 #include <vector>
 #include <unordered_map>
