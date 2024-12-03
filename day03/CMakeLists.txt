@@ -1,5 +1,5 @@
-#Day02 problem
-set(DAY "day02")
+#Day 03 problem
+set(DAY "day03")
 configure_file("${DAY}.txt" "${DAY}.txt" COPYONLY)
 
 add_executable(${DAY} "main.cpp")

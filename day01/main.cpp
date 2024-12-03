@@ -1,5 +1,3 @@
-#include <execution>
-
 #include "utility/utility.hpp"
 
 namespace
