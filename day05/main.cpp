@@ -164,8 +164,8 @@ int main(int, char**)
   using namespace std::string_view_literals;
   try
   {
-    const std::vector<std::string> page_ordering = utility::read_file(std::filesystem::current_path() / "day05_1.txt"sv);
-    const std::vector<std::string> page_update = utility::read_file(std::filesystem::current_path() / "day05_2.txt"sv);
+    const input_t page_ordering = utility::read_file(std::filesystem::current_path() / "day05_1.txt"sv);
+    const input_t page_update = utility::read_file(std::filesystem::current_path() / "day05_2.txt"sv);
 
     auto orders = get_page_orders(page_ordering);
     auto [lower_bound, upper_bound] = find_bounds(orders);

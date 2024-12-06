@@ -16,11 +16,13 @@
 #include <fmt/compile.h>
 #include <scn/scan.h>
 
+using input_t = std::vector<std::string>;
+
 namespace utility
 {
-  inline std::vector<std::string> read_file(const std::filesystem::path& path)
+  inline input_t read_file(const std::filesystem::path& path)
   {
-    std::vector<std::string> input;
+    input_t input;
     std::ifstream file_in(path);
     if (!file_in)
     {

@@ -1,4 +1,4 @@
-#Day 03 problem
+#Day 05 problem
 set(DAY "day05")
 configure_file("${DAY}_1.txt" "${DAY}_1.txt" COPYONLY)
 configure_file("${DAY}_2.txt" "${DAY}_2.txt" COPYONLY)
