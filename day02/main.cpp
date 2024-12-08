@@ -115,13 +115,11 @@ namespace
 
 int main(int, char**)
 {
-  using namespace std::string_literals;
-  using namespace std::string_view_literals;
   try
   {
-    const std::vector<std::string> input = utility::read_file(std::filesystem::current_path() / "day02.txt"sv);
-    fmt::print(FMT_STRING("Part 1: {0}\n"), part1(input));
-    fmt::print(FMT_STRING("Part 2: {0}\n"), part2(input));
+    const input_t input = utility::read_file(std::filesystem::current_path() / "day02.txt"sv);
+    utility::run_part(1, [](const input_t& input){ return part1(input); }, input);
+    utility::run_part(2, [](const input_t& input){ return part2(input); }, input);
   }
   catch(...)
   {

@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <charconv>
+#include <execution>
 #include <filesystem>
 #include <fstream>
 #include <functional>
@@ -9,6 +10,7 @@
 #include <optional>
 #include <ranges>
 #include <regex>
+#include <set>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -57,5 +59,20 @@ namespace utility
   {
     right_trim(s);
     left_trim(s);
+  }
+
+  void print_output(std::uint8_t part_no, auto& result, auto time_taken)
+  {
+    fmt::print(FMT_STRING("Part {}: {} in {}us\n"), part_no, result, time_taken);
+  }
+
+  template <typename...Args>
+  auto run_part(std::uint8_t part_no, auto to_run, Args&&... args)
+  {
+    auto start = std::chrono::high_resolution_clock::now();
+    auto result = to_run(std::forward<Args&&>(args)...);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto time_taken = end - start;
+    print_output(part_no, result, std::chrono::duration_cast<std::chrono::microseconds>(time_taken).count());
   }
 }

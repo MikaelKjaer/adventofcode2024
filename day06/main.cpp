@@ -1,3 +1,5 @@
+#include <pstl/glue_execution_defs.h>
+
 #include "utility/utility.hpp"
 
 using namespace std::string_literals;
@@ -154,7 +156,7 @@ namespace
     return guard.moves();
   }
 
-  std::size_t part2(const std::vector<std::string>& input)
+  std::size_t part2(const input_t& input)
   {
     auto copied_input = input;
     std::size_t obstructed_paths = 0;
@@ -164,18 +166,19 @@ namespace
     run_through(copied_input, guard);
     auto path = guard.all_positions();
 
-    for (const auto& position : path | std::views::keys)
+    std::ranges::for_each(path, [&obstructed_paths, &copied_input, &guard_position](const auto& entry)
     {
-      auto recopied_input = copied_input;
-      recopied_input[position.first][position.second] = '#';
+      auto position = entry.first;
+      copied_input[position.first][position.second] = '#';
 
       guard_t new_guard(guard_position);
-      auto result = run_through(recopied_input, new_guard);
+      auto result = run_through(copied_input, new_guard);
       if (result == move_result_t::looping)
       {
-        obstructed_paths++;
+        ++obstructed_paths;
       }
-    }
+      copied_input[position.first][position.second] = '.';
+    });
     return obstructed_paths;
   }
 
@@ -183,13 +186,11 @@ namespace
 
 int main(std::size_t, char**)
 {
-  using namespace std::string_literals;
-  using namespace std::string_view_literals;
   try
   {
     input_t input = utility::read_file(std::filesystem::current_path() / "day06.txt"sv);
-    fmt::print(FMT_STRING("Part 1: {0}\n"), part1(input));
-    fmt::print(FMT_STRING("Part 2: {0}\n"), part2(input));
+    utility::run_part(1, [](const input_t& input){ return part1(input); }, input);
+    utility::run_part(2, [](const input_t& input){ return part2(input); }, input);
   }
   catch(...)
   {

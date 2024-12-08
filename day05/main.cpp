@@ -160,8 +160,6 @@ namespace
 
 int main(int, char**)
 {
-  using namespace std::string_literals;
-  using namespace std::string_view_literals;
   try
   {
     const input_t page_ordering = utility::read_file(std::filesystem::current_path() / "day05_1.txt"sv);
@@ -172,9 +170,8 @@ int main(int, char**)
     auto size = upper_bound - lower_bound + 1;
     auto truth_table = create_truth_table(orders, size, lower_bound);
     auto updates = get_updates(page_update, lower_bound);
-
-    fmt::print(FMT_STRING("Part 1: {0}\n"), part1(size, lower_bound, truth_table, updates));
-    fmt::print(FMT_STRING("Part 2: {0}\n"), part2(size, lower_bound, truth_table, updates));
+    utility::run_part(1, [](std::size_t size, std::size_t lower_bound, truth_table_t& truth_table, updates_vector_t& updates){ return part1(size, lower_bound, truth_table, updates); }, size, lower_bound, truth_table, updates);
+    utility::run_part(2, [](std::size_t size, std::size_t lower_bound, truth_table_t& truth_table, updates_vector_t& updates){ return part2(size, lower_bound, truth_table, updates); }, size, lower_bound, truth_table, updates);
   }
   catch(...)
   {
