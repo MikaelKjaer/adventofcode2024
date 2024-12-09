@@ -131,7 +131,7 @@ namespace
 
 }
 
-int main(std::size_t, char**)
+int main(int, char**)
 {
   try
   {
