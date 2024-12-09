@@ -16,7 +16,6 @@
 #include <unordered_map>
 #include <fmt/format.h>
 #include <fmt/compile.h>
-#include <scn/scan.h>
 
 using input_t = std::vector<std::string>;
 

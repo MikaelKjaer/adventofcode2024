@@ -1,4 +1,5 @@
 #include "utility/utility.hpp"
+#include <scn/scan.h>
 
 using namespace std::string_literals;
 using namespace std::string_view_literals;

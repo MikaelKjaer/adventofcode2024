@@ -27,7 +27,7 @@ list(APPEND WARNING_FLAGS_LIST "$<$<COMPILE_LANGUAGE:CXX>:-Wformat=2>")
 list(APPEND WARNING_FLAGS_LIST "$<$<COMPILE_LANGUAGE:CXX>:-Wno-psabi>")
 set(WARNING_FLAGS ${WARNING_FLAGS_LIST} CACHE INTERNAL "Warning flags for beef" FORCE)
 
-set(CMAKE_CXX_FLAGS "-march=skylake -pipe -fvisibility=hidden -fvisibility-inlines-hidden -fno-strict-aliasing -stdlib=libstdc++" CACHE INTERNAL "C++ compiler options" FORCE)
+set(CMAKE_CXX_FLAGS "-march=native -pipe -fvisibility=hidden -fvisibility-inlines-hidden -fno-strict-aliasing -stdlib=libstdc++" CACHE INTERNAL "C++ compiler options" FORCE)
 set(CMAKE_EXE_LINKER_FLAGS "-Wl,--sort-section=alignment -Wl,--as-needed" CACHE INTERNAL "Linker options" FORCE)
 
 # Options for DEBUG build
