@@ -66,7 +66,17 @@ namespace utility
   }
 
   template <typename...Args>
-  auto run_part(std::uint8_t part_no, auto to_run, Args&&... args)
+  void run_test(std::uint8_t test_no, auto to_run, Args&&... args)
+  {
+    auto start = std::chrono::high_resolution_clock::now();
+    auto result = to_run(std::forward<Args&&>(args)...);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto time_taken = end - start;
+    fmt::print(FMT_STRING("Test {}: {} in {}us\n"), test_no, result, std::chrono::duration_cast<std::chrono::microseconds>(time_taken).count());
+  }
+
+  template <typename...Args>
+  void run_part(std::uint8_t part_no, auto to_run, Args&&... args)
   {
     auto start = std::chrono::high_resolution_clock::now();
     auto result = to_run(std::forward<Args&&>(args)...);
