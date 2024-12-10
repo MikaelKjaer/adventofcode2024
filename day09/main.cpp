@@ -99,8 +99,8 @@ namespace
       {
         const auto& file = std::get<file_t>(entry);
         checksum += file.file_number * index;
-        ++index;
       }
+      ++index;
     }
     return checksum;
   }
@@ -189,7 +189,7 @@ namespace
 
     auto file_iterator = std::rbegin(entries);
 
-    std::unordered_map<std::size_t,bool> touched_files;
+    std::set<std::size_t> touched_files;
     std::advance(file_iterator, entries.size() - last_file_index);
     while (file_iterator != std::rend(entries))
     {
@@ -210,14 +210,10 @@ namespace
           find_next<free_space_t>(free_space_iterator, std::end(entries));
           find_next<file_t>(file_iterator, std::rend(entries));
         }
-        touched_files.emplace(file_number_to_compress, true);
+        touched_files.emplace(file_number_to_compress);
       }
       else
       {
-        if (file_iterator + file_length >= std::rend(entries))
-        {
-          break;
-        }
         find_next<file_t>(file_iterator, std::rend(entries));
       }
     }
@@ -233,7 +229,10 @@ int main(int, char**)
     const input_t input = utility::read_file(std::filesystem::current_path() / "day09.txt"sv);
     auto parsed = parse(input[0]);
     auto parsed_part2 = parsed;
+    std::string test2{"2333133121414131402"};
+    auto parsed_test2 = parse(test2);
     utility::run_part(1, [](auto& p){ return part1(p); }, parsed);
+    utility::run_part(2, [](auto& p){ return part2(p); }, parsed_test2);
     utility::run_part(2, [](auto& p){ return part2(p); }, parsed_part2);
   }
   catch (const std::exception& e)
